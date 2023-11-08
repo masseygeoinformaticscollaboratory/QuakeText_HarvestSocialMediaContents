@@ -1,0 +1,1 @@
+{"left":168.62568056865666,"bottom":-45.05135386092965,"right":168.8237087108579,"top":-45.00158116096007,"numOfPosts":"25","YouTube":false,"Reddit":false,"Twitter":false,"timeRangeStart":"6","timeRangeEnd":"0"}

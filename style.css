@@ -1,0 +1,140 @@
+@import "node_modules/ol/ol.css";
+
+@font-face {
+    font-family: 'PlayfairDisplay';
+    src: url("res/font/playfairdisplay.woff2") format('woff2');
+}
+
+.map {
+    width: 100%;
+    min-height: 400px;
+    height: 400px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#map_wrapper {
+    height: 500px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 100%;
+}
+
+#resultstable {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table, td, th {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    padding: 8px;
+    font-size: smaller;
+}
+
+th {
+    background-color: rgb(255,255,255,0.8);
+}
+
+td {
+    background-color: rgb(255,255,255,0.5);
+}
+
+tr:hover {
+    background-color: white;
+}
+
+* { font-family: Verdana, Geneva, sans-serif;}
+
+html {
+    height: 100%;
+    margin: 0;
+    background-color: #F4F4F4;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #F4F4F4;
+}
+
+html#results {
+    height: auto;
+    background: linear-gradient(#F4F4F4, #DFE0E2);
+    background-repeat: no-repeat;
+    background-size: 100%, 100%;
+	background-attachment: scroll;
+}
+
+div#content {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+h1 {
+    color:darkorange;
+    text-align: center;
+    font-family: PlayfairDisplay;
+}
+
+p {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    background-color: #F4F4F4;
+}
+
+#figure1, #figure2 {
+    font-family: Courier;
+}
+
+footer {
+    display: flex;
+    background-color: #F4F4F4;
+}
+
+#output {
+    margin: 1.5em;
+}
+
+    #optionsList {
+      display: flex;
+      list-style-type: none;
+      padding: 0;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+
+    #optionsList li {
+      display: flex;
+      align-items: center;
+      margin-right: 5px;
+        font-size: 0.8em;
+
+    }
+
+    .checkbox {
+      width: 0.8em;
+      height: 0.8em;
+      border: 1px solid #000;
+      margin-right: 20px;
+        margin-left: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .checkbox::after {
+      content: '✔';
+      display: none;
+    }
+
+    .selected .checkbox::after {
+      display: block;
+    }

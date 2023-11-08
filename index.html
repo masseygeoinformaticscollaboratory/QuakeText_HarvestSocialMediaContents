@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    	<link rel="stylesheet" type="text/css" href="style.css">
+    	<title>Location Mapper for Reddit, Box Selection Added</title>
+        <script type="module" src="main.js"></script>
+    </head>
+
+    <body style="background-color: rgb(0,0,0,0); padding: 0% 0; display: flex; flex-direction: column ">
+    <div id="top_bar" style="background-color: rgb(48,48,48); padding-top: 2%">
+        <a href="https://geocollaboratory.massey.ac.nz/quaketext/" style="text-decoration: none"><h1 style="color: azure;">Massey Geoinformatics Collaboratory</h1></a>
+    </div>
+
+        <div id='content' style="padding-bottom: 5px">
+    	    <div style="padding-top:5px; padding-bottom:5px; display: flex; justify-content: center;">
+                <h1 class="entry-title" style="font-size: 200%">QuakeText</h1>
+    	    </div>
+
+            <div style="display: flex; justify-content: center; padding-top:3px; padding-bottom:2px;">
+    	     <p>Mapping Disaster Impacts from Social Media Platforms</p>
+            </div>
+
+    	    <div style="display: flex; justify-content: center;">
+    	     <font style="color:darkorange;" id="output">Ready</font>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; align-content: center">
+    	    <form id="searchForm" name="search" action="/getJson" method="get" style="display: flex; justify-content: center;">
+<!--    			<input type="text" name="q" value="{{request.form.q}}">-->
+
+                <a style="margin-left: 1em">Number of posts:</a>
+    		    <select name="z">
+    		        <option value="100">100 posts (max)</option>
+    		        <option value="50">50 posts</option>
+    		        <option selected="selected" value="25">25 posts</option>
+    		        <option value="10">10 posts</option>
+    		        <option value="1">1 post (min)</option>
+    		    </select>
+
+                <a style="margin-left: 1em">From:</a>
+                <select name="t_start">
+                    <option value="6" id="fromItem7">6d ago</option>
+                    <option value="5" id="fromItem6">5d ago</option>
+                    <option value="4" id="fromItem5">4d ago</option>
+                    <option value="3" id="fromItem4">3d ago</option>
+                    <option value="2" id="fromItem3">2d ago</option>
+                    <option value="1" id="fromItem2">1d ago</option>
+                    <option value="0" id="fromItem1">Today</option>
+                </select>
+
+                <a style="margin-left: 1em"> To:</a>
+                <select name="t_end">
+                    <option value="0" id="ToItem1">Now</option>
+                    <option value="1" id="ToItem2">1d ago</option>
+                    <option value="2" id="ToItem3">2d ago</option>
+                    <option value="3" id="ToItem4">3d ago</option>
+                    <option value="4" id="ToItem5">4d ago</option>
+                    <option value="5" id="ToItem6">5d ago</option>
+                    <option value="6" id="ToItem7">6d ago</option>
+                </select>
+
+    		</form>
+
+<!--            <button id="submitButton" type="submit" style="display: flex; justify-content: center;">Search</button>-->
+    	</div>
+
+    <div style="display: flex; justify-content: center; align-content: center">
+        <ul id="optionsList" style="flex-direction: row; display: flex; list-style: none; padding: 0">
+            <li onclick="toggleOption(this)"  id="twitterCheckbox">
+                <span>Twitter</span>
+                <div class="checkbox"></div>
+            </li>
+            <li onclick="toggleOption(this)"  id="redditCheckbox">
+                <span>Reddit</span>
+                <div class="checkbox"></div>
+            </li>
+            <li onclick="toggleOption(this)"  id="youtubeCheckbox">
+                <span>YouTube</span>
+                <div class="checkbox"></div>
+            </li>
+        </ul>
+    </div>
+    <div id="map" class="map"></div>
+    <div>Selected regions: <span id="info">Have not selected yet, use Shift+Drag to draw boxes.</span></div>
+    <p id="coordinate1">Lower left corner coordinates:</p>
+    <p id="figure1">0.0, 0.0</p>
+    <p id="coordinate2">Upper right corner coordinates:</p>
+    <p id="figure2">0.0, 0.0</p>
+    <p> </p>
+    <button id="sendInfo">Click here to search</button>
+
+
+    <script>
+        //import {formatPostcssSourceMap} from "vite";
+
+        function toggleOption(option) {
+            option.classList.toggle('selected');
+        }
+
+        function checkCheckboxStatus() {
+            const twitterCheckbox = document.getElementById('twitterCheckbox');
+            const redditCheckbox = document.getElementById('redditCheckbox');
+            const youtubeCheckbox = document.getElementById('youtubeCheckbox');
+
+            console.log(twitterCheckbox.classList.contains('selected'), redditCheckbox.classList.contains('selected'), youtubeCheckbox.classList.contains('selected'));
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            replaceDate();
+        });
+
+        console.log("HI");
+
+
+        function replaceDate() {
+            for (var i = 1; i <= 7; i++) {
+                var currentDate = new Date();
+                var newDate = new Date(currentDate);
+                newDate.setDate(currentDate.getDate() - i + 1);
+
+                var day = newDate.getDate();
+                var month = newDate.getMonth() + 1;
+                var year = newDate.getFullYear();
+
+                var formattedDate = (day < 10 ? '0' : '') + day + '/' + (month < 10 ? '0' : '') + month + '/' + year;
+
+                console.log("hi");
+                // Update specific date elements with unique ids
+                document.getElementById("fromItem" + i).innerText = formattedDate;
+                document.getElementById("ToItem" + i).innerText = formattedDate;
+            }
+        console.log("hi");
+        }
+
+    </script>
+    </body>
+</html>
+<!--
+	         -->
